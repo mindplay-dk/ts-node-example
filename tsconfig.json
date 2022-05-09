@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json", // Configures "lib", "target", "esModuleInterop", etc. for Node 16+
+  "include": ["src"],
+  "compilerOptions": {
+    "baseUrl": "./src",                        // Enables import statements with absolute paths
+    "module": "esnext",                        // Enables ESNext modules for Node 16+
+    "moduleResolution": "node"                 // Enables import of NPM packages
+  },
+  "ts-node": {
+    "esm": true,                               // Enables import of ESM modules
+    "require": [
+      "tsconfig-paths/register"                // Enables import statements with absolute paths
+    ]
+  }
+}
