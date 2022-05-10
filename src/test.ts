@@ -3,14 +3,28 @@
 import { b } from "./module.js";
 import c from "module";
 import colors from "ansi-colors";
-// TODO named imports from NPM packages: doesn't work for some reason
-//import { red } from "ansi-colors";
 import sql from "sql-template-tag";
 import { raw } from "sql-template-tag";
 import process from "process";
 import { exit } from "process";
 import * as ansi_colors from "ansi-colors";
 import * as sql_template_tag from "sql-template-tag";
+
+// NOTE: Support for named imports from CommonJS modules in NPM packages in Node.JS is limited
+//       and may not work for many packages.
+//
+//       For example, this wouldn't work in Node.JS, with or wirthout `ts-node`:
+//
+//           import { red } from "ansi-colors";
+//
+//       Instead, you should use the default import, a destructure that - for example:
+//
+//           import colors from "ansi-colors";
+//           const { red } = colors;
+//
+//       See also this article:
+// 
+//           https://simonplend.com/node-js-now-supports-named-imports-from-commonjs-modules-but-what-does-that-mean/
 
 function assert(ok: boolean, why: string) {
   console.log(`[${ok ? "OK" : "FAIL"}] ${why}`);
@@ -25,8 +39,6 @@ assert(typeof c === "function", `can import default from TS modules (using "esMo
 // CommonJS modules:
 
 assert(typeof colors.red === "function", `can import default from CommonJS modules in NPM packages`);
-
-//assert(typeof red === "function", `can use named imports from CommonJS modules in NPM packages`);
 
 // TODO import * from CommonJS modules in NPM packages doesn't work: TS accepts this, but ts-node produces a Module instance with a "default" property (is the ".d.ts" for "ansi-colors" correct?)
 assert(typeof ansi_colors.red === "function", `can import * from CommonJS modules in NPM packages`);
