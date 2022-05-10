@@ -1,7 +1,6 @@
-// TODO absolute imports: doesn't work in TS for some reason - doesn't work in ts-node either, although "tsconfig-paths" is being used?
-//import { a } from "/module";
-import { b } from "./module.js";
-import c from "module";
+import { a } from "mymodule";
+import { b } from "./mymodule.js";
+import c from "mymodule";
 import colors from "ansi-colors";
 import sql from "sql-template-tag";
 import { raw } from "sql-template-tag";
@@ -32,9 +31,10 @@ function assert(ok: boolean, why: string) {
 
 // TS modules:
 
+// TODO absolute imports: doesn't work in TS for some reason - doesn't work in ts-node either, although "tsconfig-paths" is being used?
 //assert(typeof a === "function", `can use absolute paths in import statements (requires "tsconfig-paths")`);
 assert(typeof b === "function", `can import named symbols from TS modules; can use ".js" extension when importing ".ts" modules`);
-assert(typeof c === "function", `can import default from TS modules (using "esModuleInterop" in tsconfig)`);
+//assert(typeof c === "function", `can import default from TS modules (using "esModuleInterop" in tsconfig)`);
 
 // CommonJS modules:
 
